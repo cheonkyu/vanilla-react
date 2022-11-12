@@ -1,0 +1,31 @@
+{
+  "name": "vanilla-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "http-server -o src",
+    "build:babel": "babel src -w -d dist",
+    "build": "webpack -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cheonkyu/vanilla-react.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cheonkyu/vanilla-react/issues"
+  },
+  "homepage": "https://github.com/cheonkyu/vanilla-react#readme",
+  "devDependencies": {
+    "@babel/core": "^7.20.2",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^9.1.0",
+    "http-server": "^14.1.1",
+    "webpack": "^5.75.0",
+    "webpack-cli": "^4.10.0"
+  },
+  "dependencies": {}
+}
