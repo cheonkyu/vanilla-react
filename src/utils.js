@@ -3,7 +3,6 @@ let _root = null;
 let _hooks = null;
 
 export let render = hooks => (Component = _Component, root = _root) => {
-  console.log(root)
   if (JSON.stringify(hooks) === _hooks) {
     return; // shitty memoization!
   } else {
@@ -23,6 +22,10 @@ export let render = hooks => (Component = _Component, root = _root) => {
 };
 
 export function createElement(type, props, ...children) {
+  if(typeof type === 'function') {
+    // props 주입
+    type = type.bind(type, props)
+  }
   return {
     type,
     props: {
@@ -33,7 +36,7 @@ export function createElement(type, props, ...children) {
     }
   };
 }
-function createTextElement(text) {
+export function createTextElement(text) {
   return {
     type: "TEXT_ELEMENT",
     props: {
@@ -109,7 +112,7 @@ export function reconcile(Component, root) {
     return Component.map(child => reconcile(child, root));
   }
   const Comp = typeof type === "string" ? Component : type();
-  if (Comp.props && Comp.props.children) {
+  if (Comp?.props && Comp?.props?.children) {
     Comp.props.children.forEach((child, idx) => {
       if (typeof child.type !== "string") {
         // recursive call for children
